@@ -28,6 +28,30 @@ class CycleController extends GetxController {
     topArticlesList.addAll(querySnapshot.docs);
   }
 
+  void getFavoriteTips() async {
+  try {
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+        .collection("TipsAndInformation")
+        .where("favorite", isEqualTo: true) // Add where condition
+        .get();
+    informationList.addAll(querySnapshot.docs);
+  } catch (e) {
+    print("Error getting favorite tips: $e");
+  }
+}
+
+void getFavoriteArticles() async {
+  try {
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+        .collection("TopArticles")
+        .where("favorite", isEqualTo: true) // Add where condition
+        .get();
+    topArticlesList.addAll(querySnapshot.docs);
+  } catch (e) {
+    print("Error getting favorite articles: $e");
+  }
+}
+
   Future<bool> fetchFavoriteState(String articleName) async {
     try {
       CollectionReference collectionReference =
@@ -52,7 +76,7 @@ class CycleController extends GetxController {
   Future<void> toggleFavorite(String articleName, bool currentFavorite) async {
     try {
       CollectionReference collectionReference =
-          FirebaseFirestore.instance.collection("TopArticles");
+          FirebaseFirestore.instance.collection("TipsAndInformation");
       QuerySnapshot querySnapshot =
           await collectionReference.where("name", isEqualTo: articleName).get();
 
@@ -63,6 +87,47 @@ class CycleController extends GetxController {
         print("Favorite toggled successfully: $newFavorite");
       } else {
         print("Article not found: $articleName");
+      }
+    } catch (e) {
+      print("Error toggling favorite: $e");
+    }
+  }
+
+  Future<bool> fetchPlantFavoriteState(String plantName) async {
+    try {
+      CollectionReference collectionReference =
+          FirebaseFirestore.instance.collection("TipsAndInformation");
+      QuerySnapshot querySnapshot =
+          await collectionReference.where("name", isEqualTo: plantName).get();
+
+      if (querySnapshot.docs.isNotEmpty) {
+        DocumentSnapshot docSnapshot = querySnapshot.docs.first;
+        bool favorite = docSnapshot.get("favorite");
+        return favorite;
+      } else {
+        print("Article not found: $plantName");
+        return false;
+      }
+    } catch (e) {
+      print("Error fetching favorite state: $e");
+      return false;
+    }
+  }
+
+  Future<void> togglePlantFavorite(String plantName, bool currentFavorite) async {
+    try {
+      CollectionReference collectionReference =
+          FirebaseFirestore.instance.collection("TipsAndInformation");
+      QuerySnapshot querySnapshot =
+          await collectionReference.where("name", isEqualTo: plantName).get();
+
+      if (querySnapshot.docs.isNotEmpty) {
+        DocumentReference docRef = querySnapshot.docs.first.reference;
+        bool newFavorite = currentFavorite;
+        await docRef.update({"favorite": newFavorite});
+        print("Favorite toggled successfully: $newFavorite");
+      } else {
+        print("Article not found: $plantName");
       }
     } catch (e) {
       print("Error toggling favorite: $e");

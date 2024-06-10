@@ -1,5 +1,5 @@
-import 'package:application5/pages/login.dart';
-import 'package:application5/pages/signup.dart';
+import 'package:application5/pages/account/login.dart';
+import 'package:application5/pages/account/signup.dart';
 import 'package:application5/widgets/myButton.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

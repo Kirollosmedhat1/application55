@@ -1,12 +1,8 @@
-// ignore_for_file: file_names
-
 import 'package:application5/controller/cont/cycleController.dart';
-// import 'package:application5/pages/cycle_Item_Info.dart';
 import 'package:application5/pages/cycle&tips/topArticle_Item.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-// import 'package:get/get_core/src/get_main.dart';
 
 class TopArticleWidget extends StatefulWidget {
   final String image;
@@ -33,14 +29,13 @@ class TopArticleWidget extends StatefulWidget {
 }
 
 class _TopArticleWidgetState extends State<TopArticleWidget> {
-  late bool _isFavorite; // Declare _isFavorite without initialization
-  final CycleController _controller = Get.find(); // Get CycleController instance
+  late bool _isFavorite;
+  final CycleController _controller = Get.find();
 
   @override
   void initState() {
     super.initState();
-    // Initialize the initial favorite state
-    _isFavorite = widget.favorite; // Initialize _isFavorite with the initial favorite state from the widget
+    _isFavorite = widget.favorite;
   }
 
   @override
@@ -53,7 +48,7 @@ class _TopArticleWidgetState extends State<TopArticleWidget> {
           steps: widget.steps,
           article: widget.article,
           readtime: widget.readtime,
-          favorite: _isFavorite, // Pass the current favorite state to the TopArticleItem
+          favorite: _isFavorite,
           date: widget.date,
         ));
       },
@@ -71,8 +66,8 @@ class _TopArticleWidgetState extends State<TopArticleWidget> {
               height: 52,
               width: 56,
               decoration: BoxDecoration(
-                image: const DecorationImage(
-                    image: NetworkImage("image"), fit: BoxFit.cover),
+                image: DecorationImage(
+                    image: NetworkImage(widget.image), fit: BoxFit.cover),
                 borderRadius: BorderRadius.circular(6),
               ),
             ),
@@ -107,9 +102,7 @@ class _TopArticleWidgetState extends State<TopArticleWidget> {
                             ? const AssetImage("images/Heart.png")
                             : const AssetImage("images/HeartSelecteed.png"))),
               ),
-
             ),
-            
           ],
         ),
       ),

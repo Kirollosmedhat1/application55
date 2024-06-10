@@ -2,7 +2,7 @@
 
 import 'dart:io';
 import 'package:application5/pages/bottom_Bar.dart';
-import 'package:application5/pages/signup.dart';
+import 'package:application5/pages/account/signup.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';

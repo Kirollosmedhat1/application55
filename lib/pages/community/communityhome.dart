@@ -2,7 +2,7 @@ import 'package:application5/Helper/helper_function.dart';
 import 'package:application5/pages/community/createcommunity.dart';
 import 'package:application5/pages/community/profile.dart';
 import 'package:application5/pages/community/searchcommunity.dart';
-import 'package:application5/pages/login.dart';
+import 'package:application5/pages/account/login.dart';
 import 'package:application5/servicre/auth_service.dart';
 import 'package:application5/servicre/database_service.dart';
 import 'package:application5/widgets/community/communityedit.dart';

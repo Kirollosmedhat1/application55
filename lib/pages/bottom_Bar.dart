@@ -2,7 +2,7 @@
 
 
 import 'package:application5/controller/cont/cart_controller.dart';
-import 'package:application5/pages/Porfile_Page2.dart';
+import 'package:application5/pages/account/Porfile_Page2.dart';
 import 'package:application5/pages/community/communityhome.dart';
 
 import 'package:application5/pages/homepage.dart';

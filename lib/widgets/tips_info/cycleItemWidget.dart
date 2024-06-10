@@ -1,10 +1,13 @@
+import 'package:application5/controller/cont/cycleController.dart';
 import 'package:application5/pages/cycle&tips/cycle_Item_Info.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-class CycleItemWidget extends StatelessWidget {
+class CycleItemWidget extends StatefulWidget {
   final String image;
+  final String image1;
+  final bool favorite;
   final String name;
   final String cat;
   final String weather;
@@ -18,6 +21,7 @@ class CycleItemWidget extends StatelessWidget {
   const CycleItemWidget({
     super.key,
     required this.image,
+    required this.image1,
     required this.name,
     required this.cat,
     required this.afterCaring,
@@ -25,141 +29,155 @@ class CycleItemWidget extends StatelessWidget {
     required this.harvesting,
     required this.steps,
     required this.timing,
-    required this.watering, required this.weather,
+    required this.watering,
+    required this.weather, required this.favorite,
   });
 
   @override
+  State<CycleItemWidget> createState() => _CycleItemWidgetState();
+}
+
+class _CycleItemWidgetState extends State<CycleItemWidget> {
+  late bool _isFavorite; // Declare _isFavorite without initialization
+  final CycleController _controller = Get.find(); // Get CycleController instance
+
+  @override
+  void initState() {
+    super.initState();
+    // Initialize the initial favorite state
+    _isFavorite = widget.favorite; // Initialize _isFavorite with the initial favorite state from the widget
+  }
+  @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {},
-      child: Stack(
-        alignment: const Alignment(0.94, 0.88),
-        children: [
-          Container(
-            margin: const EdgeInsets.only(top: 30),
-            // padding: const EdgeInsets.all(7),
-            decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(20),
-                border: Border.all(color: const Color(0xffCAEDCF))),
-            height: 120,
-            width: 400,
-            child: Row(
+    return Container(
+        margin: const EdgeInsets.only(top: 30),
+        padding: const EdgeInsets.all(7),
+        decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(color: const Color(0xffCAEDCF))),
+        height: 120,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              height: 105,
+              width: 110,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: NetworkImage(widget.image), fit: BoxFit.cover),
+                borderRadius: BorderRadius.circular(15),
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Container(
-                  height: 105,
-                  width: 110,
-                  decoration: BoxDecoration(
-                    image: const DecorationImage(
-                        image: AssetImage("images/1.png"), fit: BoxFit.cover),
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                ),
-              
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                  
-                    mainAxisAlignment: MainAxisAlignment.start,
+                Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        name,
+                        " ${widget.name}",
                         style: const TextStyle(
                             color: Color(0xff1A7431),
                             fontSize: 20,
-                            fontWeight: FontWeight.w500,
+                            fontWeight: FontWeight.w600,
                             fontFamily: "WorkSans"),
                       ),
-                      SizedBox(height: 20,),
-                       Row(
-                                       mainAxisAlignment: MainAxisAlignment.spaceAround,
-                           
-
-        
-                children: [
-                  
-                  Container(
-                     width: 140,
-              height: 40,
-              decoration: BoxDecoration(
-                  // color: Colors.black,
-                  color: const Color(0xffF1FCF3),
-                  borderRadius: BorderRadius.circular(30)),
-                    child: Container(
-                      
-                      child: TextButton(
-                        onPressed: (){Get.to(CycleItem(
-                                      afterCaring: afterCaring,
-                                      conditions: conditions,
-                                      harvesting: harvesting,
-                                      weather:weather,
-                                      image: image,
-                                      watering: watering,
-                                      steps: steps,
-                                      timing: timing,
-                                      name: name,
-                                      cat: cat,
-                                    ));},
-                      child: Text("Add To Your Plants",
-                        style: TextStyle(
-                            color: Color(0xff1B602D),
-                            fontSize: 12.5,
-                            fontWeight: FontWeight.w400,
-                            fontFamily: "WorkSans"),)  
+                      Container(
+                        width: 130,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            // color: Colors.black,
+                            color: const Color(0xffF1FCF3),
+                            borderRadius: BorderRadius.circular(30)),
+                        child: TextButton(
+                            onPressed: () {
+                              Get.to(CycleItem(
+                                afterCaring: widget.afterCaring,
+                                conditions: widget.conditions,
+                                harvesting: widget.harvesting,
+                                weather: widget.weather,
+                                image: widget.image,
+                                watering: widget.watering,
+                                steps: widget.steps,
+                                timing: widget.timing,
+                                name: widget.name,
+                                cat: widget.cat,
+                              ));
+                            },
+                            child: Text(
+                              "Add To Your Plants",
+                              style: TextStyle(
+                                  color: Color(0xff1B602D),
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.w900,
+                                  fontFamily: "WorkSans"),
+                            )),
                       ),
-                    ),
-                  ),
-
-                        Container(
-                          width: 116,
-              height: 40,
-              decoration: BoxDecoration(
-                  // color: Colors.black,
-                  color: const Color(0xffF1FCF3),
-                  borderRadius: BorderRadius.circular(30)),
-                          child: TextButton(
-                                              onPressed: (){Get.to(CycleItem(
-                                          afterCaring: afterCaring,
-                                          conditions: conditions,
-                                          harvesting: harvesting,
-                                          weather:weather,
-                                          image: image,
-                                          watering: watering,
-                                          steps: steps,
-                                          timing: timing,
-                                          name: name,
-                                          cat: cat,
-                                        ));},
-                                            child: Text("Read more",
-                                              style: TextStyle(
-                          color: Color(0xff1B602D),
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                          fontFamily: "WorkSans"),)  
-                                            ),
-                        ),
-
-              
-                ],
+                    ]),
+                    SizedBox(width: 10,),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    InkWell(
+              onTap: () async {
+                setState(() {
+                  _isFavorite = !_isFavorite; // Invert the favorite state
+                });
+                await _controller.togglePlantFavorite(widget.name, _isFavorite);
+                // Other navigation or actions
+              },
+              child: Container(
+                height: 10,
+                width: 10,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    image: DecorationImage(
+                        image: _isFavorite
+                            ? const AssetImage("images/Heart.png")
+                            : const AssetImage("images/HeartSelecteed.png"))),
               ),
-               ] ),
 
-             ) ],
-         )
-                    
-      )],
-                  ),
-                );
-                
-              
-            
-          
-
-        
-          
-          
-        
-    
+            ),
+                    Container(
+                      width: 110,
+                      height: 40,
+                      decoration: BoxDecoration(
+                          // color: Colors.black,
+                          color: const Color(0xffF1FCF3),
+                          borderRadius: BorderRadius.circular(30)),
+                      child: TextButton(
+                          onPressed: () {
+                            Get.to(CycleItem(
+                              afterCaring: widget.afterCaring,
+                              conditions: widget.conditions,
+                              harvesting: widget.harvesting,
+                              weather: widget.weather,
+                              image: widget.image,
+                              watering: widget.watering,
+                              steps: widget.steps,
+                              timing: widget.timing,
+                              name: widget.name,
+                              cat: widget.cat,
+                            ));
+                          },
+                          child: Text(
+                            "Read more",
+                            style: TextStyle(
+                                color: Color(0xff1B602D),
+                                fontSize: 15,
+                                fontWeight: FontWeight.w400,
+                                fontFamily: "WorkSans"),
+                          )),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ],
+        ));
   }
 }

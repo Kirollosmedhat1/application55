@@ -2,7 +2,7 @@
 
 import 'package:application5/controller/cont/authcontroller.dart';
 import 'package:application5/pages/bottom_Bar.dart';
-import 'package:application5/pages/signup.dart';
+import 'package:application5/pages/account/signup.dart';
 import 'package:application5/widgets/myButton.dart';
 import 'package:application5/widgets/myCircleButton.dart';
 import 'package:application5/widgets/myHeading.dart';

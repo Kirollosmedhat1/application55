@@ -1,6 +1,6 @@
 import 'package:application5/controller/cont/cycleController.dart';
 import 'package:application5/pages/homepage.dart';
-import 'package:application5/pages/login.dart';
+import 'package:application5/pages/account/login.dart';
 import 'package:application5/widgets/tips_info/cycleItemWidget.dart';
 import 'package:application5/widgets/heading_with_back.dart';
 import 'package:application5/widgets/myDrawer.dart';
@@ -48,76 +48,6 @@ class CategoryPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       drawer: const Mydrawer(),
-      bottomNavigationBar: MoltenBottomNavigationBar(
-        selectedIndex: _selectedIndex,
-        domeHeight: 25,
-        onTabChange: (Index) {},
-        borderColor: const Color(0xff1E9B3D),
-        barColor: Colors.white,
-        domeCircleColor: const Color(0xffCAEDCF),
-        tabs: [
-          MoltenTab(
-            icon: Image.asset(
-              _selectedIndex == 0
-                  ? 'images/home-selected.png'
-                  : 'images/home.png',
-            ),
-            selectedColor: const Color(0xff1E9B3D),
-            title: const Text(
-              'home',
-              style: TextStyle(color: Color(0xff1E9B3D)),
-            ),
-          ),
-          MoltenTab(
-            icon: Image.asset(
-              _selectedIndex == 1
-                  ? 'images/store-selected.png'
-                  : 'images/store.png',
-            ),
-            selectedColor: const Color(0xff1E9B3D),
-            title: const Text(
-              'AgriMarket',
-              style: TextStyle(color: Color(0xff1E9B3D)),
-            ),
-          ),
-          MoltenTab(
-            icon: Image.asset(
-              _selectedIndex == 2
-                  ? 'images/scan-selected.png'
-                  : 'images/scan.png',
-            ),
-            selectedColor: const Color(0xff1E9B3D),
-            title: const Text(
-              'Scan',
-              style: TextStyle(color: Color(0xff1E9B3D)),
-            ),
-          ),
-          MoltenTab(
-            icon: Image.asset(
-              _selectedIndex == 3
-                  ? 'images/community-selected.png'
-                  : 'images/community.png',
-            ),
-            selectedColor: const Color(0xff1E9B3D),
-            title: const Text(
-              'Community',
-              style: TextStyle(color: Color(0xff1E9B3D)),
-            ),
-          ),
-          MoltenTab(
-            icon: Image.asset(
-              _selectedIndex == 4
-                  ? 'images/profile-selected.png'
-                  : 'images/profile.png',
-            ),
-            selectedColor: const Color(0xff1E9B3D),
-            title: const Text(
-              'Account',
-              style: TextStyle(color: Color(0xff1E9B3D)),
-            ),
-          ),
-        ],
-      ),
       appBar: AppBar(
         backgroundColor: const Color(0xffF1FCF3),
       ),
@@ -145,7 +75,9 @@ class CategoryPage extends StatelessWidget {
                           alignment: const Alignment(0.94, 0.88),
                           children: [
                             CycleItemWidget(
-                              image: "${categoryList[i]["img"]}",
+                              
+                              image: "${categoryList[i]["img0"]}",
+                              image1: "${categoryList[i]["img1"]}",
                               name: "${categoryList[i]["name"]}",
                               cat: "${categoryList[i]["cat"]}",
                               afterCaring: "${categoryList[i]["After Caring"]}",
@@ -157,6 +89,8 @@ class CategoryPage extends StatelessWidget {
                               timing: "${categoryList[i]["Timing"]}",
                               watering: "${categoryList[i]["Watering"]}",
                                weather: "${categoryList[i]["Weather"]}",
+                               favorite: (controller.informationList[i]
+                                    ["favorite"] as bool),
                             ),
                           ],
                         );
