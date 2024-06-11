@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:application5/controller/cont/authcontroller.dart';
+import 'package:application5/pages/cycle&tips/MyPlantsPage.dart';
 import 'package:application5/pages/cycle&tips/agri_Tips.dart';
 import 'package:application5/pages/cycle&tips/lifecycle.dart';
 import 'package:application5/pages/cycle&tips/lifecyclee.dart';
@@ -212,7 +213,7 @@ class HomePage extends StatelessWidget {
                         ),
                         InkWell(
                           onTap: () {
-                            Get.to(() => Lifecycleee());
+                            Get.to(() => MyPlantsPage());
                           },
                           child: HomeContainer(
                               padding: EdgeInsets.fromLTRB(25, 0, 0, 0),

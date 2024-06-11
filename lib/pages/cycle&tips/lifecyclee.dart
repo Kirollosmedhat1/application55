@@ -1,6 +1,6 @@
 import 'package:application5/controller/cont/cycleController.dart';
-import 'package:application5/widgets/tips_info/lifecycle_cont.dart';
 import 'package:application5/pages/cycle&tips/lifecycle.dart';
+import 'package:application5/widgets/tips_info/lifecycle_cont.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
