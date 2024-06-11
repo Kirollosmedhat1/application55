@@ -7,23 +7,23 @@ class CycleItem extends StatelessWidget {
   const CycleItem({
     Key? key,
     required this.image,
+    required this.image1,
     required this.name,
     required this.cat,
-        required this.weather,
+    required this.weather,
     required this.afterCaring,
-    required this.conditions,
     required this.harvesting,
     required this.timing,
     required this.watering,
-    required this.steps,
+    required this.steps, 
   }) : super(key: key);
 
   final String image;
+  final String image1;
   final String name;
   final String cat;
     final String weather;
   final String afterCaring;
-  final String conditions;
   final String harvesting;
   final String timing;
   final String watering;
@@ -68,7 +68,14 @@ class CycleItem extends StatelessWidget {
           const Divider(
             color: Color(0xffB7D7BE),
           ),
-          CycleInfoContainer(title: "conditions", info: conditions),
+          Container(
+            height: 317,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                    image: NetworkImage(image1), fit: BoxFit.cover,),
+                    borderRadius: BorderRadius.circular(15)
+            ),
+          ),
           CycleInfoContainer(title: "timing", info: timing),
           Container(
             margin: const EdgeInsets.only(top: 30),

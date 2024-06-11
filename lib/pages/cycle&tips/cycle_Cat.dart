@@ -81,7 +81,6 @@ class CategoryPage extends StatelessWidget {
                               name: "${categoryList[i]["name"]}",
                               cat: "${categoryList[i]["cat"]}",
                               afterCaring: "${categoryList[i]["After Caring"]}",
-                              conditions: "${categoryList[i]["Conditions"]}",
                               harvesting: "${categoryList[i]["Harvesting"]}",
                               steps: (categoryList[i]["Steps"] as List<dynamic>)
                                   .map((step) => step.toString())

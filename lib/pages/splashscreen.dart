@@ -63,9 +63,9 @@ class _SplashScreenState extends State<SplashScreen> {
           if (firstAnimationCompleted) ...[
             AnimatedPositioned(
               duration: const Duration(seconds: 1),
-              left: 138,
+              left: 145,
               top: MediaQuery.of(context).size.height / 2 - 24,
-              child: Text("Agri",
+              child: Text("NB",
                   style: GoogleFonts.lexendDeca(
                       textStyle: const TextStyle(
                           fontSize: 40,
@@ -100,11 +100,11 @@ class _SplashScreenState extends State<SplashScreen> {
                 !secondAnimationCompleted &&
                 !textAnimationCompleted) ...[
               AnimatedPositioned(
-                left: 223,
+                left: 200,
                 top: MediaQuery.of(context).size.height / 2 - 22,
                 duration: const Duration(seconds: 1),
                 child: TypeText(
-                  "Livia",
+                  "TAH",
                   duration: const Duration(seconds: 1),
                   style: const TextStyle(
                       fontSize: 40,

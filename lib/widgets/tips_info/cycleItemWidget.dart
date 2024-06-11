@@ -12,7 +12,6 @@ class CycleItemWidget extends StatefulWidget {
   final String cat;
   final String weather;
   final String afterCaring;
-  final String conditions;
   final String harvesting;
   final List<String> steps;
   final String timing;
@@ -25,7 +24,6 @@ class CycleItemWidget extends StatefulWidget {
     required this.name,
     required this.cat,
     required this.afterCaring,
-    required this.conditions,
     required this.harvesting,
     required this.steps,
     required this.timing,
@@ -96,10 +94,10 @@ class _CycleItemWidgetState extends State<CycleItemWidget> {
                             onPressed: () {
                               Get.to(CycleItem(
                                 afterCaring: widget.afterCaring,
-                                conditions: widget.conditions,
                                 harvesting: widget.harvesting,
                                 weather: widget.weather,
                                 image: widget.image,
+                                image1: widget.image1,
                                 watering: widget.watering,
                                 steps: widget.steps,
                                 timing: widget.timing,
@@ -153,10 +151,10 @@ class _CycleItemWidgetState extends State<CycleItemWidget> {
                           onPressed: () {
                             Get.to(CycleItem(
                               afterCaring: widget.afterCaring,
-                              conditions: widget.conditions,
                               harvesting: widget.harvesting,
                               weather: widget.weather,
                               image: widget.image,
+                              image1: widget.image1,
                               watering: widget.watering,
                               steps: widget.steps,
                               timing: widget.timing,

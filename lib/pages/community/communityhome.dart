@@ -51,12 +51,14 @@ String getName(String res){
 }
 
 
-gettingUserData()async{
-await HelperFunction.getUserEmailFromSF().then((value) {
-  setState(() {
-    email =value!;
-  });
-});
+Future<void> gettingUserData() async {
+  String? userEmail = await HelperFunction.getUserEmailFromSF();
+  if (userEmail != null) {
+    setState(() {
+      email = userEmail!;
+    });
+  
+  }
 
 // await HelperFunction.getUserNameFromSF().then((value) {
 //   setState(() {
@@ -433,12 +435,12 @@ Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> Create
        }) );
       });
   }
-  groupList() {
+groupList() {
   return StreamBuilder(
     stream: groups,
     builder: (context, AsyncSnapshot snapshot) {
       if (snapshot.hasData) {
-        if (snapshot.data['groups'] != null) {
+        if (snapshot.data.exists && snapshot.data.data().containsKey('groups')) {
           if (snapshot.data['groups'].length != 0) {
             return ListView.builder(
               itemCount: snapshot.data['groups'].length,
@@ -454,10 +456,11 @@ Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> Create
                       return Text('Error: ${memberCountSnapshot.error}');
                     } else {
                       int memberCount = memberCountSnapshot.data!;
-                      String groupIconUrl = groupData is Map ? groupData['groupIconUrl'] : '';
+                      String groupIconUrl = groupData is Map && groupData.containsKey('groupIconUrl') ? groupData['groupIconUrl'] : '';
+                      String userName = snapshot.data.data().containsKey('userName') ? snapshot.data['userName'] : 'Unknown';
                       return CoummuntiyEdit(
                         groupName: getName(groupData),
-                        userName: snapshot.data['userName'],
+                        userName: userName,
                         groupId: getId(groupData),
                         groupIconUrl: groupIconUrl,
                         memberCount: memberCount,
@@ -483,6 +486,8 @@ Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> Create
     },
   );
 }
+
+
 
   noGroupsWidget(){
     return Container(
